@@ -11,6 +11,7 @@ import avatar from './../../assets/images/defaultAvatar.png'
 import { Link} from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import Modal from './../Modal/Modal'
+import { DateTime } from "luxon";
 import {followArticleThunk, setEditArticleAction} from './../../redux/actions/actions'
 
 const cn = classnames.bind(styles)
@@ -54,7 +55,7 @@ const Article = memo((props) => {
 						<div className = {cn('article-creator')}>
 							<div className={cn('bio-block')}>
 								<span className={cn('name')}>{item.author.username}</span>
-								<span className={cn('date')}>{item.author.date}</span>
+								<span className={cn('date')}>{DateTime.fromISO(item.createdAt).toFormat('MMMM d, yyyy')}</span>
 							</div>
 							<img className={cn('avatar')} src={ avatar || item.author.image } alt=''/>
 						</div>

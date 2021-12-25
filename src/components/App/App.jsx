@@ -7,7 +7,7 @@ import Header from './../Header/Header'
 import PostList from './../PostList/PostList'
 import Spinner from './../Spinner/Spinner'
 import SignInForm from './../SignInForm/SignInForm'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Article from './../Article/Article';
 import SignUpForm from './../SignUpForm/SignUpForm'
 import ArticleEditForm from './../ArticleEditForm/ArticleEditForm'
@@ -38,6 +38,7 @@ const App = () => {
 					<Route path='/article/:slug/edit' element={!loading ? <ArticleEditForm {...Object.values(posts)}/> : <Spinner />}/>
 					<Route path='/new-article' element={!loading ? <ArticleForm {...Object.values(posts)}/>  : <Spinner />}/>
 					<Route path="/profile" element={!loading ? <EditProfileForm /> : <Spinner/>} />
+					<Route path='*' element={<Navigate to='/article'/>}/>
 				</Routes>
 			</Router>
 		</div>
