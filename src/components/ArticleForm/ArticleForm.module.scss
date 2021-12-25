@@ -1,0 +1,98 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	label {
+		font-size: 14px;
+		margin-top: 15px;
+	}
+
+	input {
+		height: 40px;
+		padding: 8px 12px;
+		margin-top: 5px;
+		border: 1px solid #bfbfbf;
+		border-radius: 5px;
+		&::placeholder {
+			color: #bfbfbf;
+			font-size: 16px;
+		}
+	}
+}
+
+.title {
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 21px;
+}
+
+.textarea {
+	height: 168px;
+	padding: 8px 12px;
+	margin-top: 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	resize: none;
+	&::placeholder {
+		color: #bfbfbf;
+		font-size: 16px;
+		font-family: 'inter-regular';
+	}
+}
+
+.li {
+	list-style-type: none;
+}
+
+.tag-wrapper {
+	display: flex;
+}
+
+.tags-lable {
+	display: block;
+}
+
+.tag {
+	width: 300px;
+	margin-right: 15px;
+}
+
+.tag-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.button-delete {
+	width: 120px;
+	height: 40px;
+	margin-right: 15px;
+	font-size: 16px;
+	color: #f5222d;
+	border: 1px solid #f5222d;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.button-add {
+	align-self: flex-end;
+	width: 120px;
+	height: 40px;
+	font-size: 16px;
+	color: #1890ff;
+	border: 1px solid #1890ff;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.button {
+	width: 320px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #1890ff;
+}
+
+.validate-message {
+	display: block;
+	margin-left: 5px;
+	font-size: 12px;
+	color: red;
+}
