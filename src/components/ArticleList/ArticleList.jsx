@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import styles from './PostList.module.scss'
+import styles from './ArticleList.module.scss'
 import classnames from 'classnames/bind';
-import Post from './../Post/Post'
-import { v4 as uuidv4 } from 'uuid';
+import Article from '../Article/Article'
 import { Pagination } from 'antd';
 
 const cn = classnames.bind(styles)
 
-const PostList = (posts) => {
+const ArticleList = (posts) => {
 	const articles = Object.values(posts)
 	const [currentPage, setCurrentPage] = useState(1)
 	const perPage = 5;
@@ -22,8 +21,8 @@ const PostList = (posts) => {
 		<>
 			<div className={cn('main-wrapper')}>
 				{slicedPosts.map(article => 
-					<Post 
-						key = {uuidv4()}
+					<Article 
+						key = {article.createdAt + Math.random()}
 						{...article} 
 					/>
 				)}
@@ -39,4 +38,4 @@ const PostList = (posts) => {
 	)
 }
 
-export default PostList
+export default ArticleList

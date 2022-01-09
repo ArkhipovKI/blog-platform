@@ -1,7 +1,6 @@
 import BlogApiService from './../../api/BlogApiService'
 
-const API_BASE = 'https://cirosantilli-realworld-next.herokuapp.com/api/'
-const {getPosts, loginUser, signUp, followArticle} = new BlogApiService()
+const {getPosts, loginUser, signUp, followArticle, createPost, editPost, deleteArticle, setEditUser} = new BlogApiService()
 
 export const SET_POSTS_ACTION = 'SET_POSTS_ACTION';
 export const setPostsAction = (payload) => ({
@@ -98,52 +97,19 @@ export const getPostsThunk = (token) => async (dispatch) => {
 }
 
 export const createPostThunk = (article, token) => (dispatch) => {
-	fetch(`${API_BASE}articles`, {
-		method: 'POST',
-		body: JSON.stringify({
-			article,
-		}),
-		headers: {
-			Authorization: `Token ${token}`,
-			'Content-Type': 'application/json',
-		},
-	}).catch(() => dispatch(confirmMessage(true)));
+	createPost(article, token).catch(() => dispatch(confirmMessage(true)));
 }
 
 export const editPostThunk = (article, token, slug) =>  (dispatch) => {
-		fetch(`${API_BASE}articles/${slug}`, {
-			method: 'PUT',
-			body: JSON.stringify({
-				article,
-			}),
-			headers: {
-				Authorization: `Token ${token}`,
-				'Content-Type': 'application/json',
-			},
-		}).catch(() => dispatch(confirmMessage(true)));
+	editPost(article, token, slug).catch(() => dispatch(confirmMessage(true)));
 }
 
 export const deleteArticleThunk = (token, slug) =>  (dispatch) => {
-	 fetch(`${API_BASE}articles/${slug}`, {
-		method: 'DELETE',
-		headers: {
-			authorization: `Token ${token}`,
-			'Content-Type': 'application/json',
-		},
-	}).catch(() => dispatch(confirmMessage(true)))
+	deleteArticle(token, slug).catch(() => dispatch(confirmMessage(true)))
 }
 
-export const setEditUserThunk = ( user, token ) => (dispatch) => {
-	fetch(`${API_BASE}/user`, {
-		method: 'PUT',
-		body: JSON.stringify({
-			user,
-		}),
-		headers: {
-			Authorization: `Token ${token}`,
-			'Content-Type': 'application/json',
-		},
-	})
+export const setEditUserThunk = (user, token) => (dispatch) => {
+	setEditUser( user, token )
 		.then((response) => response.json())
 		.then((response) => dispatch(loginedUserAction(response.user)))
 		.catch(() => dispatch(confirmMessage(true)));

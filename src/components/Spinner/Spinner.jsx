@@ -2,7 +2,7 @@ import React from 'react';
 import { Spin } from 'antd';
 import classnames from 'classnames/bind';
 import styles from './Spinner.module.scss';
-import 'antd/dist/antd.css';
+// import '../Spinner/node_modules/antd/dist/antd.css';
 
 const cn = classnames.bind(styles);
 

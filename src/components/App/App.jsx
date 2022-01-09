@@ -4,11 +4,11 @@ import {getPostsThunk} from './../../redux/actions/actions';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import Header from './../Header/Header'
-import PostList from './../PostList/PostList'
+import ArticleList from '../ArticleList/ArticleList'
 import Spinner from './../Spinner/Spinner'
 import SignInForm from './../SignInForm/SignInForm'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Article from './../Article/Article';
+import IsLogInArticle from '../IsLogInArticle/IsLogInArticle';
 import SignUpForm from './../SignUpForm/SignUpForm'
 import ArticleEditForm from './../ArticleEditForm/ArticleEditForm'
 import ArticleForm from './../ArticleForm/ArticleForm'
@@ -33,11 +33,11 @@ const App = () => {
 				<Routes>
 					<Route path='/sign-in' element={<SignInForm/>} />
 					<Route path='/sign-up' element={<SignUpForm/>} />
-					<Route path='/article' element={!loading ? < PostList {...Object.values(posts)} /> : <Spinner />}/>
-					<Route path='/article/:slug' element={!loading ? < Article {...Object.values(posts)} /> : <Spinner />}/>
-					<Route path='/article/:slug/edit' element={!loading ? <ArticleEditForm {...Object.values(posts)}/> : <Spinner />}/>
-					<Route path='/new-article' element={!loading ? <ArticleForm {...Object.values(posts)}/>  : <Spinner />}/>
-					<Route path="/profile" element={!loading ? <EditProfileForm /> : <Spinner/>} />
+					<Route path='/article' element={!loading ? < ArticleList {...Object.values(posts)} /> : <Spinner />}/>
+					<Route path='/article/:slug' element={!loading ? < IsLogInArticle {...Object.values(posts)}/> : <Spinner />}/>
+					<Route path='/article/:slug/edit' element={token ? !loading ? <ArticleEditForm {...Object.values(posts)}/> : <Spinner /> : <Navigate to='/article'/>}/>
+					<Route path='/new-article' element={token ? !loading ? <ArticleForm {...Object.values(posts)}/>  : <Spinner /> : <Navigate to='/article'/>}/>
+					<Route path="/profile" element={token ? !loading ? <EditProfileForm /> : <Spinner/> : <Navigate to='/article'/>} />
 					<Route path='*' element={<Navigate to='/article'/>}/>
 				</Routes>
 			</Router>
